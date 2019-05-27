@@ -10,7 +10,9 @@ frappe.pages['user-dashboard'].on_page_load = function(wrapper) {
 		refresh_btn: wrapper.page.set_primary_action(__("Refresh"),
 			function() { me.get_data(); }, "fa fa-refresh"),
 	};
-
+	this.elements.refresh_btn.on("click", function() {
+		me.get_data(this);
+	});
 	var $container = $(`
 		<div class="form-layout">
 			<div class="form-page">
@@ -33,29 +35,38 @@ frappe.pages['user-dashboard'].on_page_load = function(wrapper) {
 		</div>
 	`).appendTo(me.page.main);
 
-	task = "\
-		<h4>You have Task</h4>\
-		<table class='table table-bordered table-hover'>\
-			<thead>\
-				<tr>\
-					<th class='text-left'>Subject</th>\
-					<th class='text-left'>Project</th>\
-					<th class='text-left'>Status</th>\
-					<th class='text-right'>Priority</th>\
-					<th class='text-left'>Expected End Date</th>\
-				</tr>\
-			</thead>\
-			<tbody>\
-				<tr>\
-					<td>Audit Gudang</td>\
-					<td>-</td>\
-					<td>Open</td>\
-					<td class='text-right'>Medium</td>\
-					<td>31 Mei 2019</td>\
-				</tr>\
-			</tbody>\
-		</table>"
-	$container.find(".task").html(task);
+	frappe.call({
+		method: "dashboard.dashboard.page.user_dashboard.user_dashboard.get_task",
+		callback: function(r) {
+			if(r.message) {
+				$container.find(".task").html(r.message);
+			}
+		}
+	})
+
+	// task = "\
+	// 	<h4>You have Task</h4>\
+	// 	<table class='table table-bordered table-hover'>\
+	// 		<thead>\
+	// 			<tr>\
+	// 				<th class='text-left'>Subject</th>\
+	// 				<th class='text-left'>Project</th>\
+	// 				<th class='text-left'>Status</th>\
+	// 				<th class='text-right'>Priority</th>\
+	// 				<th class='text-left'>Expected End Date</th>\
+	// 			</tr>\
+	// 		</thead>\
+	// 		<tbody>\
+	// 			<tr>\
+	// 				<td>Audit Gudang</td>\
+	// 				<td>-</td>\
+	// 				<td>Open</td>\
+	// 				<td class='text-right'>Medium</td>\
+	// 				<td>31 Mei 2019</td>\
+	// 			</tr>\
+	// 		</tbody>\
+	// 	</table>"
+	// $container.find(".task").html(task);
 
 	sales_order = "\
 		<h4>Your open Sales Order</h4>\
@@ -182,42 +193,4 @@ frappe.pages['user-dashboard'].on_page_load = function(wrapper) {
 		colors: ['purple', '#ffa3ef', 'light-blue']
 	})
 	setTimeout(function () {graph2.draw(!0)}, 1);
-	// let chart = new frappe.Chart(".chart", {
-	//     data: {
-	//       labels: ["12am-3am", "3am-6am", "6am-9am", "9am-12pm",
-	//       "12pm-3pm", "3pm-6pm", "6pm-9pm", "9pm-12am"],
-	//
-	//       datasets: [
-	//         {
-	//           name: "Some Data", chartType: 'bar',
-	//           values: [25, 40, 30, 35, 8, 52, 17, -4]
-	//         },
-	//         {
-	//           name: "Another Set", chartType: 'bar',
-	//           values: [25, 50, -10, 15, 18, 32, 27, 14]
-	//         },
-	//         {
-	//           name: "Yet Another", chartType: 'line',
-	//           values: [15, 20, -3, -15, 58, 12, -17, 37]
-	//         }
-	//       ],
-	//
-	//       yMarkers: [{ label: "Marker", value: 70,
-	//         options: { labelPos: 'left' }}],
-	//       yRegions: [{ label: "Region", start: -10, end: 50,
-	//         options: { labelPos: 'right' }}]
-	//     },
-	//
-	//     title: "My Awesome Chart",
-	//     type: 'axis-mixed',
-	//     height: 300,
-	//     colors: ['purple', '#ffa3ef', 'light-blue'],
-	//
-	//     tooltipOptions: {
-	//       formatTooltipX: d => (d + '').toUpperCase(),
-	//       formatTooltipY: d => d + ' pts',
-	//     }
-	//   });
-	// 	chart.export();
-
 }
