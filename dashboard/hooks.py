@@ -13,7 +13,7 @@ app_license = "No Copy"
 
 # Includes in <head>
 # ------------------
-
+fixtures = ["Custom Field"]
 # include js, css files in header of desk.html
 # app_include_css = "/assets/dashboard/css/dashboard.css"
 app_include_css = "/assets/dashboard/css/custom.css"
@@ -28,6 +28,10 @@ app_include_css = "/assets/dashboard/css/custom.css"
 
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {
+    "Asset": "public/js/asset.js",
+    "Asset Movement": "public/js/asset_movement.js",
+}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -84,7 +88,13 @@ on_login = "dashboard.dashboard.event.redirect"
 # Document Events
 # ---------------
 # Hook on document methods and events
-
+doc_events = {
+    "Asset": {
+        "validate": [
+            "dashboard.dashboard.event.update_asset_barcode",
+        ]
+    },
+}
 # doc_events = {
 # 	"*": {
 # 		"on_update": "method",
