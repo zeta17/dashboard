@@ -1,4 +1,4 @@
-frappe.ui.form.on('Asset Movement', {
+frappe.ui.form.on('Asset Maintenance', {
   barcode: function(frm){
     if(frm.doc.barcode){
       frappe.call({

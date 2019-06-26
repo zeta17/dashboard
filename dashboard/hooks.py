@@ -31,6 +31,7 @@ app_include_css = "/assets/dashboard/css/custom.css"
 doctype_js = {
     "Asset": "public/js/asset.js",
     "Asset Movement": "public/js/asset_movement.js",
+    "Asset Maintenance": "public/js/asset_maintenance.js",
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
