@@ -32,6 +32,7 @@ doctype_js = {
     "Asset": "public/js/asset.js",
     "Asset Movement": "public/js/asset_movement.js",
     "Asset Maintenance": "public/js/asset_maintenance.js",
+    "Asset Repair": "public/js/asset_repair.js",
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}

@@ -1,5 +1,5 @@
 from __future__ import unicode_literals
-import frappe
+import frappe, urllib2
 from frappe.utils import flt, fmt_money, get_url
 from frappe import msgprint, _
 from frappe.model.document import Document
@@ -23,5 +23,19 @@ def redirect():
 
 def update_asset_barcode(doc, method):
     if doc.barcode:
-        bcode_link = "https://barcode.tec-it.com/barcode.ashx?data="+doc.barcode+"&code=Code128&dpi=150"
-        doc.db_set("barcode_link", bcode_link)
+        filedata = urllib2.urlopen('https://barcode.tec-it.com/barcode.ashx?data='+doc.barcode+'&code=Code128&dpi=150')
+        datatowrite = filedata.read()
+
+        with open(frappe.get_site_path("public", "files", doc.barcode+".png"), 'wb') as f:
+            f.write(datatowrite)
+        barcode_link = "/files/"+doc.barcode+".png"
+        doc.db_set("barcode_link", barcode_link)
+
+@frappe.whitelist()
+def download_file():
+    import urllib2
+    filedata = urllib2.urlopen('https://barcode.tec-it.com/barcode.ashx?data=1400079&code=Code128&dpi=150')
+    datatowrite = filedata.read()
+
+    with open('/home/frappe/frappe-bench/sites/erpnext.vm/public/files/1400079.png', 'wb') as f:
+        f.write(datatowrite)

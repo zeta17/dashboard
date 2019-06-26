@@ -6,22 +6,36 @@ from frappe.model.document import Document
 from frappe.model.mapper import get_mapped_doc
 
 @frappe.whitelist()
-def get_asset_barcode(bcode, doctype):
+def get_asset_barcode_for_asset_movement(bcode, type):
     if frappe.db.exists("Asset", {"barcode":bcode}):
-        asset, barcode_link, asset_category, item_code, item_name = frappe.db.get_value("Asset", {"barcode":bcode}, ["name", "barcode_link", "asset_category", "item_code", "item_name"])
-        if doctype == "Asset Movement":
-            aa = {
-                'asset': asset,
-                'barcode_link': barcode_link
-            }
-        else:
-            aa = {
-                'asset_name': asset,
-                'barcode_link': barcode_link,
-                'asset_category': asset_category,
-                'item_code': item_code,
-                'item_name': item_name
-            }
+        asset, barcode_link = frappe.db.get_value("Asset", {"barcode":bcode}, ["name", "barcode_link"])
+        aa = {
+            'asset': asset,
+            'barcode_link': barcode_link
+        }
         return aa
     else:
         frappe.throw(_("Barcode not identified"))
+
+@frappe.whitelist()
+def get_asset_barcode(bcode):
+    if frappe.db.exists("Asset", {"barcode":bcode}):
+        barcode_link = frappe.db.get_value("Asset", {"barcode":bcode}, "barcode_link")
+        barcode = {
+            'barcode_link': barcode_link
+        }
+        return barcode
+    else:
+        frappe.throw(_("Barcode not identified"))
+
+@frappe.whitelist()
+def get_asset_detail(bcode):
+    if frappe.db.exists("Asset", {"barcode":bcode}):
+        asset = frappe.db.get_value("Asset", {"barcode":bcode}, "name")
+        detail = {
+            'asset_name': asset,
+            'asset_category': frappe.db.get_value("Asset", asset, "asset_category"),
+            'item_code': frappe.db.get_value("Asset", asset, "item_code"),
+            'item_name': frappe.db.get_value("Asset", asset, "item_name")
+        }
+        return detail
