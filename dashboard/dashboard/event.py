@@ -23,7 +23,7 @@ def redirect():
 
 def update_asset_barcode(doc, method):
     if doc.barcode:
-        filedata = urllib2.urlopen('https://barcode.tec-it.com/barcode.ashx?data='+doc.barcode+'&code=Code128&dpi=150')
+        filedata = urllib2.urlopen('https://barcode.tec-it.com/barcode.ashx?data='+doc.barcode+'&code=MobileQRCode&dpi=150')
         datatowrite = filedata.read()
 
         with open(frappe.get_site_path("public", "files", doc.barcode+".png"), 'wb') as f:

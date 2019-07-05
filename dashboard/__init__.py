@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-__version__ = '0.0.7'
+__version__ = '0.0.8'
 # gil push origin master
 
+#   0.0.8
+#   - Ubah barcode jadi QR Code
 #   0.0.7
 #   - Copy fungsi dari Procurement
 #   - Add beberapa field di Material Request & Supplier Quotation dari Procurement
