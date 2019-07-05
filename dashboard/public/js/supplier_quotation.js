@@ -6,7 +6,7 @@ frappe.ui.form.on('Supplier Quotation', {
   },
   atur_badge: function(frm){
     frappe.call({
-      method: "procurement.procurement.reference.get_badge",
+      method: "dashboard.dashboard.reference.get_badge",
       args:{
         sq: frm.doc.name,
       },
