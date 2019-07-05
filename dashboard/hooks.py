@@ -33,6 +33,8 @@ doctype_js = {
     "Asset Movement": "public/js/asset_movement.js",
     "Asset Maintenance": "public/js/asset_maintenance.js",
     "Asset Repair": "public/js/asset_repair.js",
+    "Material Request": "public/js/material_request.js",
+    "Supplier Quotation": "public/js/supplier_quotation.js",
 }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -105,6 +107,15 @@ doc_events = {
         ],
         "on_cancel": [
             "dashboard.dashboard.event.sum_amount_asset",
+        ]
+    },
+    "Material Request": {
+        "validate": "dashboard.dashboard.event.validate_material_request"
+    },
+    "Supplier Quotation": {
+        "validate": [
+            "dashboard.dashboard.event.validate_sq_timer",
+            "dashboard.dashboard.event.validate_sq_badge"
         ]
     }
 }

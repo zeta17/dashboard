@@ -39,3 +39,16 @@ def get_asset_detail(bcode):
             'item_name': frappe.db.get_value("Asset", asset, "item_name")
         }
         return detail
+
+@frappe.whitelist()
+def get_badge(sq):
+    if frappe.db.exists("Supplier Quotation", sq):
+        badge = frappe.db.sql("""select badge from `tabSupplier Quotation` where `name` = %s""", sq)[0][0]
+        aa = {
+            'badge': badge
+        }
+    else:
+        aa = {
+            'badge': ''
+        }
+    return aa
