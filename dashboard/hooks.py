@@ -94,8 +94,19 @@ doc_events = {
     "Asset": {
         "validate": [
             "dashboard.dashboard.event.update_asset_barcode",
+        ],
+        "on_submit": [
+            "dashboard.dashboard.event.submit_asset",
         ]
     },
+    "Journal Entry": {
+        "on_submit": [
+            "dashboard.dashboard.event.sum_amount_asset",
+        ],
+        "on_cancel": [
+            "dashboard.dashboard.event.sum_amount_asset",
+        ]
+    }
 }
 # doc_events = {
 # 	"*": {

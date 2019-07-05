@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-__version__ = '0.0.5'
+__version__ = '0.0.6'
+# gil push upstream master
 
+#   0.0.6
+#   - Add page: Asset Dashboard
+#   - Add field: book_value in Asset
 #   0.0.5
 #   - Update asset_repair.js, asset_movement.js & asset_maintenance.js
 #   - Add barcode pada Asset Repair

@@ -10,3 +10,11 @@
 
 
 /* body[data-route="user-dashboard"] .shaded-section  {background-color: #fff; border:1px #d1d8dd solid} */
+button[data-fieldname="excel"],
+button[data-fieldname="excel"]:hover,
+button[data-fieldname="excel"]:active,
+button[data-fieldname="excel"]:focus
+  {
+  background:#098939;
+	color:#fff
+}

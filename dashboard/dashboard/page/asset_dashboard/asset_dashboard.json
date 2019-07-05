@@ -1,15 +1,15 @@
 {
  "content": null, 
- "creation": "2019-05-24 10:22:58.881775", 
+ "creation": "2019-07-05 10:28:54.629554", 
  "docstatus": 0, 
  "doctype": "Page", 
  "idx": 0, 
- "modified": "2019-07-02 13:31:30.705597", 
+ "modified": "2019-07-05 10:28:54.629554", 
  "modified_by": "Administrator", 
  "module": "Dashboard", 
- "name": "user-dashboard", 
+ "name": "asset-dashboard", 
  "owner": "Administrator", 
- "page_name": "user-dashboard", 
+ "page_name": "asset-dashboard", 
  "roles": [
   {
    "role": "Administrator"
@@ -22,5 +22,5 @@
  "standard": "Yes", 
  "style": null, 
  "system_page": 0, 
- "title": "User Dashboard"
+ "title": "Asset Dashboard"
 }

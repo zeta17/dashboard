@@ -6,6 +6,8 @@ frappe.pages['user-dashboard'].on_page_load = function(wrapper) {
 		single_column: true
 	});
 
+	frappe.breadcrumbs.add("Dashboard")
+
 	setTimeout(
 		function () {
 			graph.draw(!0),
